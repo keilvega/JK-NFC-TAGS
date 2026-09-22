@@ -481,6 +481,20 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(25px,3.6vw,39px);l
 .mk-body{padding:15px}
 .mk.site .mk-body{padding:0;background:#0B0B0C}
 .mk.site .mk-body img{width:100%;height:auto;display:block}
+/* Ventana de navegador: negro con filo ámbar + semáforo de macOS */
+.mk.site{background:#0B0B0C;border:1px solid rgba(244,176,0,.28)}
+.mk.site .mk-bar{gap:7px;padding:10px 13px;background:#0B0B0C;border-bottom:1px solid rgba(244,176,0,.30)}
+.mk.site .mk-bar i{width:11px;height:11px;position:relative;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.25)}
+.mk.site .mk-bar i:nth-child(1){background:#FF5F57}
+.mk.site .mk-bar i:nth-child(2){background:#FEBC2E}
+.mk.site .mk-bar i:nth-child(3){background:#28C840}
+.mk.site .mk-bar i::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .15s;background:center/7px 7px no-repeat}
+.mk.site .mk-bar i:nth-child(1)::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M2.2 2.2l3.6 3.6M5.8 2.2L2.2 5.8' stroke='%234D0000' stroke-width='1.15' stroke-linecap='round'/%3E%3C/svg%3E")}
+.mk.site .mk-bar i:nth-child(2)::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M1.8 4h4.4' stroke='%23985712' stroke-width='1.25' stroke-linecap='round'/%3E%3C/svg%3E")}
+.mk.site .mk-bar i:nth-child(3)::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M2 2h3.1L2 5.1z M6 6H2.9L6 2.9z' fill='%23006500'/%3E%3C/svg%3E")}
+.mk.site .mk-bar:hover i::after{opacity:1}
+.mk.site .mk-url{gap:6px;background:#1A1A1D;border:1px solid rgba(255,255,255,.06);color:#7C7C82}
+.mk.site .mk-url::before{content:"";width:7px;height:8.5px;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Crect x='1' y='5' width='8' height='6.2' rx='1.4' fill='%238E8E93'/%3E%3Cpath d='M3 5V3.6a2 2 0 0 1 4 0V5' fill='none' stroke='%238E8E93' stroke-width='1.3'/%3E%3C/svg%3E") center/contain no-repeat}
 .case{margin-top:18px;font-size:12.8px;line-height:1.6;text-align:center;color:var(--sm,var(--muted));max-width:400px}
 .case b{font-weight:700;color:inherit}
 .case-tag{display:block;font-size:10.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:9px}
@@ -671,6 +685,43 @@ footer{background:var(--contrast);color:var(--contrast-muted);padding:0 0 46px;t
   .marquee{-webkit-mask-image:none;mask-image:none;overflow-x:auto}
 }
 </style>
+<!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+  ttq.load('DAPH9DRC77UB6V73LJAG');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+<script>
+/* Evento "Contact" de TikTok en cada botón de WhatsApp, con la sección de origen */
+(function(){
+  function origen(a){
+    if(a.classList.contains('nav-cta')) return 'nav';
+    if(a.classList.contains('cbar-cta')) return 'hero-barra';
+    var sl=a.closest('.slide');
+    if(sl){ var m=sl.className.match(/sv-([\w-]+)/); return 'hero-'+(m?m[1]:'panel'); }
+    var sec=a.closest('section[id]');
+    return sec ? sec.id : 'otro';
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me/"]') : null;
+    if(!a || !window.ttq) return;
+    try{
+      window.ttq.track('Contact', {
+        content_name: origen(a),
+        content_category: 'WhatsApp',
+        description: document.documentElement.lang || 'es'
+      });
+    }catch(_){}
+  }, true);
+})();
+</script>
 </head>
 <body class="booting">
 
